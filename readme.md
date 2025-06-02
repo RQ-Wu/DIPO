@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" height=120>
+</p>
+
 # <p align="center"> DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data </p>
 
 
