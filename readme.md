@@ -1,0 +1,1 @@
+# DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data
