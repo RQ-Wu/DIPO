@@ -48,28 +48,36 @@ client = AzureOpenAI(
 )
 ```
 
-## Download Data
+## Download
 
 ### PM-X Dataset
 Our PM-X dataset is constructed by an agent system, named LEGO-Art. It builds complex articulated objects with primitives provieded by Partnet-Mobility dataset. You can download the novel dataset at [link]().
 <img src="assets/PM-X.png">
 
 ### PM + ACD Dataset
-You can download the origin data and our proprocessed data from [here], for training and evaluation.
+You can download the origin data and our proprocessed data from [here](), for training and evaluation.
+
+### Checkpoints
+You can download DIPO checkpoint file for inference and CAGE pre-trained weights for training from [here]().
+```
+<project directory>
+├── ckpts
+│   ├── cage_cfg.ckpt
+│   ├── dipo.ckpt
+```
 
 ## Usage
 ### Quick Demo
-We provide a quick demo to run the inference on an example input image located at `demo/demo_input.png`. This script will take the example image as input, predict part connectivity graph using [GPT-4o](https://openai.com/index/hello-gpt-4o/), extract image feature using [DinoV2](https://github.com/facebookresearch/dinov2), and generate articulated object using our model. Please make sure that the model checkpoint and preprocessed data (from PartNet-Mobility) are downloaded. 
+We provide a quick demo to run the inference on a dual-state image pair. 
 ```
-# To run the whole package
-python demo/demo.py
+python demo_img.py \
+--configs/config.yaml \
+--ckpt_path ckpts/dipo.ckpt \
+--img_path_1 path/of/the/resting/state/image \
+--img_path_2 path/of/the/articulated/state/image
 ```
-If you don't have the OpenAI API key yet, you can opt to skip the graph prediction by using our given graph `demo/example_graph.json` that is parsed from the GPT response.
-```
-# To skip the graph prediction using GPT-4o
-python demo/demo.py --use_example_graph
-```
-If you successfully run the script, the output will be saved at `demo/demo_output`. By default, there will be three objects generated out by initializing with different noises.
+
+If you successfully run the script, the output will be saved at `./results`. By default, there will be three objects generated out by initializing with different noises.
 For other configuration, please see the arguments in the script.
 
 ### Evaluation
@@ -77,20 +85,20 @@ If you're interested in evaluating our model on the test set (see the data split
 ```
 # Evaluate on the test set (given GT graph, no object category label)
 python test.py \
-    --config exps/singapo/final/config/parsed.yaml \
-    --ckpt exps/singapo/final/ckpts/last.ckpt \ 
+    --config configs/config.yaml \
+    --ckpt ckpts/dipo.ckpt \ 
     --label_free \
     --which_data pm
 ```
-We also share the graph prediction results [here](https://aspis.cmpt.sfu.ca/projects/singapo/pred_graph.zip) so that you can run the evaluation by taking the graph prediction from GPT-4o as input. Once downloaded, you can put it under the `exps` directory, as shown in the following file structure.
+<!-- We also share the graph prediction results [here](https://aspis.cmpt.sfu.ca/projects/singapo/pred_graph.zip) so that you can run the evaluation by taking the graph prediction from GPT-4o as input. Once downloaded, you can put it under the `exps` directory, as shown in the following file structure.
 ```
 <project directory>
 ├── exps
 │   ├── predict_graph
 │   │   ├── acd_test
 │   │   ├── pm_test
-```
-To use these recordings of the graph prediction for evaluation, you need to specify the path to one of the prediction folders `--G_dir`. For example,
+``` -->
+<!-- To use these recordings of the graph prediction for evaluation, you need to specify the path to one of the prediction folders `--G_dir`. For example,
 ```
 # Evaluate on the test set (given predicted graph, no object category label)
 python test.py \
@@ -99,12 +107,10 @@ python test.py \
     --label_free \
     --which_data pm \ 
     --G_dir exps/pred_graph/pm_test
-```
-The evaluation is only supported on a single GPU, which was tested on a NVIDIA 3060 (12GB).
+``` -->
+The evaluation is only supported on a single GPU, which was tested on a NVIDIA 4090 (24GB).
 
 ### Training
-To train our model from scratch, the preprocessed data from PartNet-Mobility (downloaded [here](https://aspis.cmpt.sfu.ca/projects/singapo/data/pm.zip)) and our augmented data (downloaded [here](https://aspis.cmpt.sfu.ca/projects/singapo/data/augmented_train.zip)) is required. 
-
 We train our model on top of a [CAGE](https://3dlg-hcvc.github.io/cage/) model pretrained under our setting. This checkpoint can be downloaded [here](https://aspis.cmpt.sfu.ca/projects/singapo/ckpts/pretrained_cage.zip), which is put under `pretrained` folder by default.
 ```
 <project directory>

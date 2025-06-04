@@ -1,8 +1,8 @@
-name: singapo
+name: dipo
 version: denoiser
 
 data:
-  name: dm_singapo
+  name: dm_dipo
   json_root: data_path
   root: data_path   # root directory of the dataset
   batch_size: 20  # batch size for training

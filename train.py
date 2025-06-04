@@ -46,7 +46,6 @@ def train(config):
         logger=logger,
         callbacks=callbacks,
         enable_progress_bar=True,
-        num_nodes=3,
         **config.trainer
     )
 

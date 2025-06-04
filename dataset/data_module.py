@@ -6,8 +6,8 @@ import lightning.pytorch as pl
 from torch.utils.data import DataLoader
 from dataset.mydataset import MyDataset
 
-@dataset.register("dm_singapo")
-class SingapoDataModule(pl.LightningDataModule):
+@dataset.register("dm_dipo")
+class DIPODataModule(pl.LightningDataModule):
 
     def __init__(self, hparams):
         super().__init__()
@@ -38,7 +38,7 @@ class SingapoDataModule(pl.LightningDataModule):
         if stage == "fit" or stage is None:
             train_ids, val_ids = self._prepare_split()
             val_ids = val_ids
-            self.train_dataset = MyDataset(self.hparams, model_ids=train_ids, mode="train")
+            self.train_dataset = MyDataset(self.hparams, model_ids=train_ids[:10], mode="train")
             self.val_dataset = MyDataset(self.hparams, model_ids=val_ids[:50], mode="val")
         elif stage == "validate":
             val_ids = self._prepare_test_ids()
