@@ -15,9 +15,9 @@ import random
 
 # Initialize the OpenAI client
 client = AzureOpenAI(
-    azure_endpoint="https://yfb-openai-japan.openai.azure.com/",
-    api_key="5aa008ecdf18491da091ef5eb30f71b5",
-    api_version="2024-07-01-preview",
+    azure_endpoint="your endpoint,
+    api_key="your key",
+    api_version="your version",
 )
 
 def predict_layout(description):

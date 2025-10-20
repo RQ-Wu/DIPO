@@ -10,3 +10,4 @@ open3d
 trimesh
 numpy-quaternion
 openai
+opencv-python

@@ -1,4 +1,4 @@
-code = open('/home/users/ruiqi.wu/manipulate_3d_generate/scripts/layout_generator/layout_generator_in_grid.py', 'r', encoding='utf-8').read()
+code = open('./scripts/layout_generator/layout_generator_in_grid.py', 'r', encoding='utf-8').read()
 
 prompt_1 = f"""
 # The following code is a function that generates a layout for a given object in a grid format.

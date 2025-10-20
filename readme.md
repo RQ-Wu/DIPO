@@ -2,14 +2,14 @@
   <img src="assets/logo.png" height=120>
 </p>
 
-# <p align="center"> DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data </p>
+# <p align="center"> [NeruIPS 2025] DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data </p>
 
 
 ![Python 3.10](https://img.shields.io/badge/python-3.8-g) ![pytorch 2.3.1](https://img.shields.io/badge/pytorch-2.3.1-blue.svg)
 
 :rocket: This repository is the official implementation of [DIPO](https://arxiv.org/pdf/2505.20460), which is a framework that generate articulated objects conditioned on **Dual-State Image Pairs** (resting and articulated states)
 
-> **DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data**<br>
+> **[NeruIPS 2025] DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data**<br>
 > Ruiqi Wu, Xinjie Wang, Liu Liu, Chunle Guo*, Jiaxiong Qiu, Chongyi Li, Lichao Huang, Zhizhong Su, Ming-Ming Cheng
 ><br>( * indicates corresponding author)
 
@@ -66,6 +66,10 @@ You can download DIPO checkpoint file for inference and CAGE pre-trained weights
 │   ├── dipo.ckpt
 ```
 
+### 3D assets for mesh retrieval
+Download 3D assets for mesh retrieval from [here](https://huggingface.co/datasets/wuruiqi0722/DIPO_data), which also the original data of a subset of PartNet-Mobility Dataset.
+
+
 ## Usage
 ### Quick Demo
 We provide a quick demo to run the inference on a dual-state image pair. 
@@ -90,24 +94,6 @@ python test.py \
     --label_free \
     --which_data pm
 ```
-<!-- We also share the graph prediction results [here](https://aspis.cmpt.sfu.ca/projects/singapo/pred_graph.zip) so that you can run the evaluation by taking the graph prediction from GPT-4o as input. Once downloaded, you can put it under the `exps` directory, as shown in the following file structure.
-```
-<project directory>
-├── exps
-│   ├── predict_graph
-│   │   ├── acd_test
-│   │   ├── pm_test
-``` -->
-<!-- To use these recordings of the graph prediction for evaluation, you need to specify the path to one of the prediction folders `--G_dir`. For example,
-```
-# Evaluate on the test set (given predicted graph, no object category label)
-python test.py \
-    --config exps/singapo/final/config/parsed.yaml \
-    --ckpt exps/singapo/final/ckpts/last.ckpt \
-    --label_free \
-    --which_data pm \ 
-    --G_dir exps/pred_graph/pm_test
-``` -->
 The evaluation is only supported on a single GPU, which was tested on a NVIDIA 4090 (24GB).
 
 ### Training
@@ -123,6 +109,25 @@ python train.py \
     --config configs/config.yaml \
     --pretrained_cage pretrained/cage_cfg.ckpt
 ```
+
+### LEGO-Art Pipeline
+```
+# Step-1: Roll description & Build grid-level data
+python scripts/layout_generator/api.py --save_path path/to/gpt/data --obj_num 3
+
+# Step-2: Build data with coordinates
+python scripts/layout_generator/layout_generator_in_grid.py --save_path path/to/gpt/data
+
+# Step-3 Retrival
+python scripts/mesh_retrieval/retrieval.py --src_dir path/to/gpt/data --gt_data_root path/to/assets/for/retrieval
+
+# Step-4 Render data with Blender
+python scripts/render/render_dir.py --src_dir path/to/gpt/data
+
+# Step-5 Filter data with VLMs
+python scripts/layout_generator/api_filter.py --save_path path/to/gpt/data
+```
+
 
 ## Citation
 ```
