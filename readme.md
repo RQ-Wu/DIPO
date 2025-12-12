@@ -136,8 +136,6 @@ python scripts/layout_generator/api_filter.py --save_path path/to/gpt/data
   title={DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data},
   author={Wu, Ruqi and Wang, Xinjie and Liu, Liu and Guo, Chunle and Qiu, Jiaxiong and Li, Chongyi and Huang, Lichao and Su, Zhizhong and Cheng, Ming-Ming},
   booktitle={Advances in Neural Information Processing Systems 39 (NeurIPS 2025)},
-  year={2025},
-  % note={The page numbers (pages) or volume information (volume) would be added here 
-  % once the proceedings are published.}
+  year={2025}
 }
 ```
