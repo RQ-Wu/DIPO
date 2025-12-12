@@ -15,7 +15,7 @@
 
 [[Arxiv Paper](https://arxiv.org/pdf/2505.20460)]&nbsp;
 [[中文版](https://rq-wu.github.io/projects/DIPO/DIPO_CN.pdf)]&nbsp;
-[[Website Page](https://rq-wu.github.io/projects/LAMP/index.html)]&nbsp;
+[[Website Page](https://rq-wu.github.io/projects/DIPO/index.html)]&nbsp;
 [[PM-X (dataset)](https://huggingface.co/datasets/HorizonRobotics/DIPO-Dataset)]&nbsp;
 [[Gradio Demo](https://huggingface.co/spaces/HorizonRobotics/DIPO)]&nbsp;
 
