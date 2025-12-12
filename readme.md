@@ -2,7 +2,7 @@
   <img src="assets/logo.png" height=120>
 </p>
 
-# <p align="center"> [NeruIPS 2025] DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data </p>
+# <p align="center"> [NeurIPS 2025] DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data </p>
 
 
 ![Python 3.10](https://img.shields.io/badge/python-3.8-g) ![pytorch 2.3.1](https://img.shields.io/badge/pytorch-2.3.1-blue.svg)
