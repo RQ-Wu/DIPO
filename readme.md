@@ -14,9 +14,10 @@
 ><br>( * indicates corresponding author)
 
 [[Arxiv Paper](https://arxiv.org/pdf/2505.20460)]&nbsp;
+[[中文版](https://rq-wu.github.io/projects/DIPO/DIPO_CN.pdf)]&nbsp;
 [[Website Page](https://rq-wu.github.io/projects/LAMP/index.html)]&nbsp;
-[[PM-X (dataset)]()]&nbsp;
-[[Gradio Demo](https://colab.research.google.com/drive/1Cw2e0VFktVjWC5zIKzv2r7D2-4NtH8xm?usp=sharing)]&nbsp;
+[[PM-X (dataset)](https://huggingface.co/datasets/HorizonRobotics/DIPO-Dataset)]&nbsp;
+[[Gradio Demo](https://huggingface.co/spaces/HorizonRobotics/DIPO)]&nbsp;
 
 <img src="assets/method.png">
 
@@ -107,7 +108,7 @@ Run the following command to train our model from scratch. The original model is
 ```
 python train.py \
     --config configs/config.yaml \
-    --pretrained_cage pretrained/cage_cfg.ckpt
+    --pretrained_cage ckpts/cage_cfg.ckpt
 ```
 
 ### LEGO-Art Pipeline
@@ -131,10 +132,12 @@ python scripts/layout_generator/api_filter.py --save_path path/to/gpt/data
 
 ## Citation
 ```
-@article{wu2025dipo,
+@inproceedings{wu2025dipo,
   title={DIPO: Dual-State Images Controlled Articulated Object Generation Powered by Diverse Data},
   author={Wu, Ruqi and Wang, Xinjie and Liu, Liu and Guo, Chunle and Qiu, Jiaxiong and Li, Chongyi and Huang, Lichao and Su, Zhizhong and Cheng, Ming-Ming},
-  journal={arXiv preprint arXiv:2505.20460},
-  year={2025}
+  booktitle={Advances in Neural Information Processing Systems 39 (NeurIPS 2025)},
+  year={2025},
+  % note={The page numbers (pages) or volume information (volume) would be added here 
+  % once the proceedings are published.}
 }
 ```
